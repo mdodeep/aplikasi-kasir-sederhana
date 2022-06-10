@@ -34,8 +34,28 @@
                             }
                             ?>
                         </td>
-                        <td><a href="?halaman=transaksi&nomor=<?php echo $row_laporan_transaksi['nomor_transaksi']; ?>" class="btn btn-primary btn-sm px-3 mx-2">Lihat Detail</a></td>
+                        <td>
+                            <a href="?halaman=transaksi&nomor=<?php echo $row_laporan_transaksi['nomor_transaksi']; ?>" class="btn btn-primary btn-sm px-3 mx-2">Lihat Detail</a>
+                            <button type="button" class="btn btn-sm btn-danger px-3" data-bs-toggle="modal" data-bs-target="#hapusdata<?php echo $row_laporan_transaksi['id_laporan']; ?>">Hapus Data</button>
+                        </td>
                     </tr>
+                    <div class="modal fade" id="hapusdata<?php echo $row_laporan_transaksi['id_laporan']; ?>" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                            <div class="modal-content bg-danger">
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-white">Hapus Data</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body text-white">
+                                    <p>Data ini akan dihapus, apakah anda yakin untuk menghapus data ini?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Tidak</button>
+                                    <a href="?halaman=laporan-transaksi&hapus=<?php echo $row_laporan_transaksi['nomor_transaksi']; ?>" class="btn btn-dark">Iya, Hapus</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 <?php } ?>
             </tbody>
         </table>

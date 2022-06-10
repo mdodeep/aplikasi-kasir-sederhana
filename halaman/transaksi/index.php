@@ -86,8 +86,8 @@
                                 <?php if (empty($get_field_data_laporan_transaksi['status_tagihan'])) { ?>
                                     <td>
                                         <input type="hidden" name="id_data_transaksi" value="<?php echo $row_transaksi['id_data_barang']; ?>">
-                                        <button type="submit" class="btn btn-sm btn-success" name="ubah_data_transaksi">Perbarui</button>
-                                        <a class="btn btn-sm btn-danger text-center" href="?halaman=transaksi&nomor=<?php echo $ambil_nomor_transaksi; ?>&hapus=<?php echo $row_transaksi['id_data_barang']; ?>"><i class="bi bi-trash-fill"></i></a>
+                                        <button type="submit" class="btn btn-sm btn-success text-center" name="ubah_data_transaksi">Update</button>
+                                        <a class="btn btn-sm btn-danger text-center mx-2" href="?halaman=transaksi&nomor=<?php echo $ambil_nomor_transaksi; ?>&hapus=<?php echo $row_transaksi['id_data_barang']; ?>"><i style="margin-left: 0 !important" class="bi bi-trash-fill"></i></a>
                                     </td>
                                 <?php } else {
                                 } ?>

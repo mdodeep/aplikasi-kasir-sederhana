@@ -1565,8 +1565,8 @@ a {
     align-items: center;
     justify-content: center;
     margin: auto;
-    max-width: 60rem;
-    height: 100vh;
+    max-width: 25rem;
+    height: auto;
 }
 
 .login-separater span {
@@ -1772,7 +1772,6 @@ a {
 
 .authentication-card {
 	padding: 1.5rem 0;
-	height: auto;
 }
 
 .top-header .navbar .mobile-toggle-icon,

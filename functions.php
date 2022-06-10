@@ -5,6 +5,12 @@ require('config.php');
 /* Fungsi Time Zone */
 date_default_timezone_set('Asia/Jakarta');
 
+/* Start Get Table data_user */
+$ambil_id_user = isset($_SESSION['login']);
+$get_table_data_user = mysqli_query($conn, "SELECT * FROM data_user WHERE id_user='$ambil_id_user'");
+$get_field_data_user = mysqli_fetch_assoc($get_table_data_user);
+/* End Get Table data_user */
+
 /* Start Get Table data_barang */
 $get_table_data_barang = mysqli_query($conn, "SELECT * FROM data_barang");
 $get_field_data_barang = mysqli_fetch_assoc($get_table_data_barang);
@@ -13,13 +19,22 @@ $get_field_data_barang = mysqli_fetch_assoc($get_table_data_barang);
 /* Start Fungsi Hapus Data Barang */
 if (isset($_GET['hapus'])) {
     $id_hapus_data = $_GET['hapus'];
+
     if ($_GET['halaman'] == "transaksi") {
         $hapus_data_nomor_transaksi = $_GET['nomor'];
         mysqli_query($conn, "DELETE FROM data_transaksi WHERE id_data_barang='$id_hapus_data' AND nomor_transaksi='$hapus_data_nomor_transaksi'");
         echo "<script> location.replace('?halaman=transaksi&nomor=$hapus_data_nomor_transaksi'); </script>";
-    } else {
+    }
+
+    if ($_GET['halaman'] == "data-barang") {
         mysqli_query($conn, "DELETE FROM data_barang WHERE id_data_barang='$id_hapus_data'");
         echo "<script> location.replace('?halaman=data-barang'); </script>";
+    }
+
+    if ($_GET['halaman'] == "laporan-transaksi") {
+        mysqli_query($conn, "DELETE FROM laporan_transaksi WHERE nomor_transaksi='$id_hapus_data'");
+        mysqli_query($conn, "DELETE FROM data_transaksi WHERE nomor_transaksi='$id_hapus_data'");
+        echo "<script> location.replace('?halaman=laporan-transaksi'); </script>";
     }
 }
 /* End Fungsi Hapus Data Barang */
@@ -84,7 +99,7 @@ if (empty($get_field_data_transaksi['nomor_transaksi'])) {
 
 /* Start Deklarasi Parameter "Nomor" Untuk Mengambil Data */
 if (isset($_GET['nomor'])) {
-    $ambil_nomor_transaksi = $_GET['nomor']; // Mengambil Data Nomor Dengan Parameter GET
+    $ambil_nomor_transaksi = trim(strip_tags(mysqli_real_escape_string($conn, $_GET['nomor']))); // Mengambil Data Nomor Dengan Parameter GET
 
     // Mengambil Data Transaksi Sesuai Nomor
     $get_data_nomor_transaksi = mysqli_query($conn, "SELECT * FROM data_transaksi WHERE nomor_transaksi='$ambil_nomor_transaksi'");
@@ -143,7 +158,7 @@ if (isset($_POST['tambah_data_barang_transaksi'])) {
 if (!empty($_POST['keyword'])) {
     include "config.php";
 
-    $cari = trim(strip_tags($_POST['keyword']));
+    $cari = trim($conn, $_POST['keyword']);
 
     // Mendapatkan Data Barang
     $get_barang = mysqli_query($conn, "SELECT * FROM data_barang WHERE (nama_barang LIKE '%$cari%' OR nomor_barang LIKE '%$cari%')");

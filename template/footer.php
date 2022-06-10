@@ -30,7 +30,7 @@
 
 <?php if (isset($_GET['halaman'])) {
     if ($_GET['halaman'] == "transaksi") {
-        echo '<script src="assets/js/ajax-cari-barang.php"></script>';
+        echo '<script src="assets/js/ajax-cari-barang.js"></script>';
     }
 }
 ?>

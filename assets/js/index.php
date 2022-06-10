@@ -85,12 +85,31 @@ data:
 } else {
 	echo $get_jul['transaksi_jumlah_bulanan_jul'];
 } ?>,
-
-<?php echo $get_aug['transaksi_jumlah_bulanan_aug']; ?>,
-<?php echo $get_sep['transaksi_jumlah_bulanan_sep']; ?>,
-<?php echo $get_oct['transaksi_jumlah_bulanan_oct']; ?>,
-<?php echo $get_nov['transaksi_jumlah_bulanan_nov']; ?>,
-<?php echo $get_dec['transaksi_jumlah_bulanan_dec']; ?>
+<?php if (empty($get_aug['transaksi_jumlah_bulanan_aug'])) {
+	echo "0";
+} else {
+	echo $get_aug['transaksi_jumlah_bulanan_aug'];
+} ?>,
+<?php if (empty($get_sep['transaksi_jumlah_bulanan_sep'])) {
+	echo "0";
+} else {
+	echo $get_sep['transaksi_jumlah_bulanan_sep'];
+} ?>,
+<?php if (empty($get_oct['transaksi_jumlah_bulanan_oct'])) {
+	echo "0";
+} else {
+	echo $get_oct['transaksi_jumlah_bulanan_oct'];
+} ?>,
+<?php if (empty($get_nov['transaksi_jumlah_bulanan_nov'])) {
+	echo "0";
+} else {
+	echo $get_nov['transaksi_jumlah_bulanan_nov'];
+} ?>,
+<?php if (empty($get_dec['transaksi_jumlah_bulanan_dec'])) {
+	echo "0";
+} else {
+	echo $get_dec['transaksi_jumlah_bulanan_dec'];
+} ?>
 ]
 
 }],
